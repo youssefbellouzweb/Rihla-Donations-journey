@@ -59,7 +59,7 @@ export default function Navbar() {
 
           </div>
         </div>
-      </motion.nav>
+      </motion.nav> {/* <-- This is the corrected closing tag */}
 
       <AnimatePresence>
         {isMenuOpen && (
