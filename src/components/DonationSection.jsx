@@ -1,12 +1,20 @@
 // src/components/DonationSection.jsx
 import React, { useState } from 'react';
 import BankTransferModal from './BankTransferModal';
+import DonorInfoModal from './DonorInfoModal';
 
 export default function DonationSection() {
   const [isBankModalOpen, setIsBankModalOpen] = useState(false);
+  const [isDonorInfoModalOpen, setIsDonorInfoModalOpen] = useState(false);
+
   const currentAmount = 250; 
   const goalAmount = 3500;   
   const progressPercentage = Math.min((currentAmount / goalAmount) * 100, 100);
+
+  const handleProceedToDonorInfo = () => {
+    setIsBankModalOpen(false);
+    setIsDonorInfoModalOpen(true);
+  };
 
   return (
     <>
@@ -47,7 +55,15 @@ export default function DonationSection() {
         </div>
       </section>
 
-      <BankTransferModal isOpen={isBankModalOpen} onClose={() => setIsBankModalOpen(false)} />
+      <BankTransferModal 
+        isOpen={isBankModalOpen} 
+        onClose={() => setIsBankModalOpen(false)} 
+        onProceed={handleProceedToDonorInfo}
+      />
+      <DonorInfoModal 
+        isOpen={isDonorInfoModalOpen} 
+        onClose={() => setIsDonorInfoModalOpen(false)} 
+      />
     </>
   );
 }
