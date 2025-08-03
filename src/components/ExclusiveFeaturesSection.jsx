@@ -4,55 +4,59 @@ import React from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 
-// First, we define the content for our 6 features in an array.
-// This makes the main component cleaner.
+// This array is now fully updated with the correct image paths from your 'public/photos' folder.
 const features = [
   {
     rank: 6,
     title: 'Rihla Comfort+ Tier',
     description: 'An elite experience. Guarantee a top-rated “Pro” driver, a premium vehicle, and in-car amenities like chargers and water, all selectable in-app.',
-    image_placeholder: 'App screenshot showing the Comfort+ booking screen.'
+    imageUrl: '/photos/rank6.jpeg'
   },
   {
     rank: 5,
-    title: 'Driver "Heatmap" Forecaster',
-    description: 'We don’t just give drivers trips; we guide them to success. Our AI-powered map predicts where demand will surge, maximizing driver earnings and ensuring ride availability.',
-    image_placeholder: 'A sleek, futuristic map with glowing red and orange zones.'
+    title: 'Rihla for Her',
+    description: 'A dedicated feature giving female passengers the option to request a ride exclusively from a female driver, providing an unparalleled level of comfort and security.',
+    imageUrl: '/photos/rank5.jpeg'
   },
   {
     rank: 4,
     title: 'The "Triple-Check" Shield',
     description: 'Our foundational safety protocol. Every driver is verified through a mandatory three-step process: National ID check, criminal record review, and annual vehicle inspection.',
-    image_placeholder: 'A graphic showing the three check icons: ID, Police Record, Vehicle.'
+    imageUrl: '/photos/rank4.jpeg'
   },
   {
     rank: 3,
     title: 'Rihla Guardian™ with Sentry',
     description: 'The ultimate safety net. Assign “Guardians” to monitor your trip’s live location, speed, and ETA, with automatic audio and video recording from our integrated Sentry camera providing a complete, impartial witness.',
-    image_placeholder: 'A phone screen showing a map, with a small picture-in-picture video feed from the in-car camera.'
+    imageUrl: '/photos/rank3.jpeg'
   },
   {
     rank: 2,
     title: 'Integrated Language Translation',
     description: 'With the World Cup and Africa Cup coming to Morocco, communication is key. Our in-app chat provides real-time, automatic translation, connecting our drivers with visitors from around the globe seamlessly.',
-    image_placeholder: 'A chat interface showing a message in English instantly translating to Arabic.'
+    imageUrl: '/photos/rank2.jpeg'
   },
   {
     rank: 1,
     title: 'The Digital Handshake™',
     description: 'The final word in pickup safety. Before getting in, scan the license plate with your phone’s camera. The app confirms the match with a satisfying checkmark, eliminating all uncertainty.',
-    image_placeholder: 'A phone camera view overlaying a digital checkmark on a license plate.'
+    imageUrl: '/photos/rank1.jpeg'
   }
 ];
 
 // This is a sub-component for each feature card.
-const FeatureCard = ({ rank, title, description, image_placeholder }) => {
+const FeatureCard = ({ rank, title, description, imageUrl }) => {
   return (
     <div className="h-screen w-full flex flex-col justify-center items-center sticky top-0">
       <div className="section-container grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-        {/* Left Column: Image Placeholder */}
-        <div className="w-full h-80 bg-white/5 rounded-2xl flex items-center justify-center p-8 border border-white/10">
-           <p className="text-center text-text-secondary">{image_placeholder}</p>
+        
+        {/* Left Column: Image */}
+        <div className="w-full h-80 bg-white/5 rounded-2xl border border-white/10 overflow-hidden">
+           <img 
+              src={imageUrl} 
+              alt={title} 
+              className="w-full h-full object-cover" 
+           />
         </div>
         
         {/* Right Column: Text Content */}
@@ -79,7 +83,6 @@ export default function ExclusiveFeaturesSection() {
         </p>
       </div>
 
-      {/* The container for our sticky-scrolling cards */}
       <div className="relative h-[600vh]">
         {features.map((feature) => (
           <FeatureCard 
@@ -87,7 +90,7 @@ export default function ExclusiveFeaturesSection() {
             rank={feature.rank}
             title={feature.title}
             description={feature.description}
-            image_placeholder={feature.image_placeholder}
+            imageUrl={feature.imageUrl}
           />
         ))}
       </div>

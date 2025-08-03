@@ -29,8 +29,12 @@ export default function AboutMeSection() {
 
           {/* Right Column: Photo and the new button */}
           <div className="flex flex-col items-center text-center">
-             <div className="w-48 h-48 rounded-full bg-white/10 mx-auto mb-8 border-4 border-brand-blue/50 flex items-center justify-center">
-                <p className="text-text-secondary">Your Photo Here</p>
+             <div className="w-48 h-48 rounded-full mx-auto mb-8 border-4 border-brand-blue/50 overflow-hidden">
+                <img 
+                    src="public/photos/ffff.jpeg" // <-- This path is now updated
+                    alt="Photo of El Hanafi Abbaali"
+                    className="w-full h-full object-cover" 
+                />
               </div>
               <h3 className="font-display text-xl mb-4">Help Accelerate Development</h3>
               <p className="text-text-secondary max-w-sm mb-8">

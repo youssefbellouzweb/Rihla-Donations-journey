@@ -1,4 +1,5 @@
 // src/components/DonationSection.jsx
+
 import React, { useState } from 'react';
 import BankTransferModal from './BankTransferModal';
 import DonorInfoModal from './DonorInfoModal';
@@ -40,15 +41,13 @@ export default function DonationSection() {
                 <span>Goal: ${goalAmount.toLocaleString()}</span>
               </div>
             </div>
-            <div className="flex flex-col sm:flex-row gap-4 mt-12 justify-center">
-              <a href="https://buy.stripe.com/link_to_your_product" target="_blank" rel="noopener noreferrer" className="flex-1 sm:flex-none text-center group relative inline-flex items-center justify-center gap-3 rounded-full bg-white px-8 py-4 text-lg font-bold text-brand-blue transition-transform duration-300 ease-in-out hover:scale-105">
-                Contribute via Stripe
-              </a>
+            {/* The PayPal button has been removed from here */}
+            <div className="flex gap-4 mt-12 justify-center">
               <button 
                 onClick={() => setIsBankModalOpen(true)} 
-                className="flex-1 sm:flex-none text-center group relative inline-flex items-center justify-center gap-3 rounded-full border border-white/20 bg-transparent px-8 py-4 text-lg font-bold text-white transition-colors duration-300 ease-in-out hover:bg-white/10"
+                className="group relative inline-flex items-center justify-center gap-3 rounded-full border border-white/20 bg-transparent px-8 py-4 text-lg font-bold text-white transition-colors duration-300 ease-in-out hover:bg-white/10"
               >
-                Bank Transfer Info
+                Continue via Bank Transfer
               </button>
             </div>
           </div>

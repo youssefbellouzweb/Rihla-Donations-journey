@@ -10,12 +10,11 @@ const BankIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-
 const IbanIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" /><path strokeLinecap="round" strokeLinejoin="round" d="M3 7h18M3 17h18" /></svg>;
 const SwiftIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>;
 
-// --- The Animated Letter Component ---
+// --- The Animated Letter Component (Unchanged) ---
 const ScrambledLetter = ({ targetLetter, isVisible }) => {
     const [displayLetter, setDisplayLetter] = useState('');
     const controls = useAnimation();
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-
     useEffect(() => {
         if (isVisible) {
             const scramble = async () => {
@@ -25,34 +24,34 @@ const ScrambledLetter = ({ targetLetter, isVisible }) => {
                     await new Promise(res => setTimeout(res, 30));
                 }
                 setDisplayLetter(targetLetter);
-                controls.start({
-                    color: '#007AFF',
-                    scale: [1, 1.3, 1],
-                    transition: { duration: 0.4, ease: 'easeOut' }
-                });
+                controls.start({ color: '#007AFF', scale: [1, 1.3, 1], transition: { duration: 0.4, ease: 'easeOut' } });
             };
             scramble();
         }
     }, [isVisible, targetLetter, controls]);
-
     return <motion.span animate={controls} className="font-mono text-text-primary">{displayLetter}</motion.span>;
 };
 
-// --- The InfoRow Component ---
+// --- The InfoRow Component (Unchanged) ---
 const InfoRow = ({ label, value, icon, isVisible }) => {
     const [isCopied, copy] = useCopyToClipboard();
     const letters = Array.from(value);
     return (
-        <div className="flex items-center py-4 border-b border-white/10">
-            <div className="w-8">{icon}</div>
-            <span className="flex-1 text-sm text-text-secondary pl-4">{label}</span>
-            <div className="flex items-center gap-4">
-                <div className="hidden sm:flex items-center">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between py-3 border-b border-white/10">
+            <div className="flex items-center w-full">
+                <div className="w-8 flex-shrink-0">{icon}</div>
+                <span className="flex-1 text-sm text-text-secondary pl-4">{label}</span>
+                 <button onClick={() => copy(value)} className={`sm:hidden text-xs bg-white/10 text-white font-bold py-1 px-3 rounded-md transition-all w-24 ${isCopied ? 'bg-brand-blue' : 'hover:bg-white/20'}`}>
+                    {isCopied ? 'Copied ✓' : 'Copy'}
+                </button>
+            </div>
+            <div className="flex items-center gap-4 mt-2 sm:mt-0">
+                <div className="flex items-center flex-wrap">
                     {letters.map((letter, index) => (
                         <ScrambledLetter key={index} targetLetter={letter} isVisible={isVisible} />
                     ))}
                 </div>
-                <button onClick={() => copy(value)} className={`text-xs bg-white/10 text-white font-bold py-1 px-3 rounded-md transition-all w-24 ${isCopied ? 'bg-brand-blue' : 'hover:bg-white/20'}`}>
+                 <button onClick={() => copy(value)} className={`hidden sm:block text-xs bg-white/10 text-white font-bold py-1 px-3 rounded-md transition-all w-24 ${isCopied ? 'bg-brand-blue' : 'hover:bg-white/20'}`}>
                     {isCopied ? 'Copied ✓' : 'Copy'}
                 </button>
             </div>
@@ -60,15 +59,17 @@ const InfoRow = ({ label, value, icon, isVisible }) => {
     );
 };
 
+
 // --- The Main Modal Component ---
-// UPDATED: Accept the onProceed prop
 export default function BankTransferModal({ isOpen, onClose, onProceed }) {
+    // === BANK INFO UPDATED HERE ===
     const bankInfo = {
-        "Account Holder": "El Hanafi Abbaali",
-        "IBAN": "MA64000012345678910111213",
-        "Bank Name": "Attijariwafa Bank",
-        "SWIFT/BIC": "BCMAMAMC",
+        "Account Holder": "EL Hanafi Abbaali",
+        "IBAN": "350810000000001289950502",
+        "Bank Name": "AL BARID BANK",
+        "SWIFT/BIC": "ABBMMAMC",
     };
+    // =============================
 
     return (
         <AnimatePresence>
@@ -98,9 +99,8 @@ export default function BankTransferModal({ isOpen, onClose, onProceed }) {
                                 <InfoRow icon={<SwiftIcon />} label="SWIFT/BIC" value={bankInfo["SWIFT/BIC"]} isVisible={isOpen} />
                             </div>
 
-                            {/* UPDATED: This button now triggers the next step */}
                             <button onClick={onProceed} className="w-full bg-brand-blue/80 hover:bg-brand-blue text-white font-bold py-3 rounded-lg transition-colors">
-                                Done?
+                                Done
                             </button>
                         </div>
                     </motion.div>
