@@ -34,7 +34,7 @@ export default function AboutMeSection() {
                 className="w-48 h-48 rounded-full mx-auto mb-8 border-4 border-brand-blue/60 overflow-hidden relative shine-effect shadow-lg"
               >
                 <img 
-                  src="public/photos/ffff.jpeg"
+                  src="/photos/ffff.jpeg"
                   alt="Photo of El Hanafi Abbaali"
                   className="w-full h-full object-cover"
                 />

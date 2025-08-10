@@ -9,42 +9,42 @@ const features = [
     title: "Rihla Comfort+ Tier",
     description:
       "An elite experience. Guarantee a top-rated “Pro” driver, a premium vehicle, and in-car amenities like chargers and water, all selectable in-app.",
-    imageUrl: "public/photos/rank6.jpeg",
+    imageUrl: "/photos/rank6.jpeg",
   },
   {
     rank: 5,
     title: "Rihla for Her",
     description:
       "Female passengers can request a ride exclusively from a female driver, ensuring comfort and security.",
-    imageUrl: "public/photos/rank5.jpeg",
+    imageUrl: "/photos/rank5.jpeg",
   },
   {
     rank: 4,
     title: 'The "Triple-Check" Shield',
     description:
       "Every driver is vetted with ID verification, criminal record checks, and annual vehicle inspections.",
-    imageUrl: "public/photos/rank4.jpeg",
+    imageUrl: "/photos/rank4.jpeg",
   },
   {
     rank: 3,
     title: "Rihla Guardian™ with Sentry",
     description:
       "Family or friends can monitor your trip live, with in-car audio/video recording for full accountability.",
-    imageUrl: "public/photos/rank3.jpeg",
+    imageUrl: "/photos/rank3.jpeg",
   },
   {
     rank: 2,
     title: "Integrated Language Translation",
     description:
       "Our in-app chat auto-translates messages so drivers and passengers can connect without barriers.",
-    imageUrl: "public/photos/rank2.jpeg",
+    imageUrl: "/photos/rank2.jpeg",
   },
   {
     rank: 1,
     title: "The Digital Handshake™",
     description:
       "Scan the license plate before boarding to confirm the correct ride with complete certainty.",
-    imageUrl: "public/photos/rank1.jpeg",
+    imageUrl: "/photos/rank1.jpeg",
   },
 ];
 
