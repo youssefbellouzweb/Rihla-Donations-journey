@@ -1,10 +1,8 @@
-// src/components/AboutMeSection.jsx
-
 import React from 'react';
+import { motion } from 'framer-motion';
 
 export default function AboutMeSection() {
     
-    // Function for smooth scrolling to the new donation section
     const scrollToDonation = () => {
         const element = document.getElementById('donation-section');
         if (element) {
@@ -12,30 +10,38 @@ export default function AboutMeSection() {
         }
     };
 
-  return (
-    <section id="about-founder" className="bg-brand-dark border-y border-white/10 py-24 sm:py-32">
-      <div className="section-container">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left Column: Your Story */}
-          <div className="text-left">
-            <p className="font-display text-brand-blue text-lg mb-2">The Visionary</p>
-            <h2 className="h2-display mb-4">About the Founder</h2>
-            <p className="p-body">
-              My name is El Hanafi Abbaali. Two years ago, I was a candidate at the coding school 1337, and for my entire life, I've been driven by a passion for development. But this isn't just about code; it's about being a game-changer for my country.
-              <br/><br/>
-              My dream is to build a major tech company from scratch that pushes Morocco forward. Rihla is the start of that dream. It is my answer to a market that deserves better and my commitment to building world-class solutions, right here at home.
-            </p>
-          </div>
+    return (
+      <section id="about-founder" className="bg-brand-dark border-y border-white/10 py-24 sm:py-32">
+        <div className="section-container">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Left Column */}
+            <div className="text-left">
+              <p className="font-display text-brand-blue text-lg mb-2">The Visionary</p>
+              <h2 className="h2-display mb-4">About the Founder</h2>
+              <p className="p-body">
+                My name is El Hanafi Abbaali. Two years ago, I was a candidate at the coding school 1337, and for my entire life, I've been driven by a passion for development. But this isn't just about code; it's about being a game-changer for my country.
+                <br/><br/>
+                My dream is to build a major tech company from scratch that pushes Morocco forward. Rihla is the start of that dream. It is my answer to a market that deserves better and my commitment to building world-class solutions, right here at home.
+              </p>
+            </div>
 
-          {/* Right Column: Photo and the new button */}
-          <div className="flex flex-col items-center text-center">
-             <div className="w-48 h-48 rounded-full mx-auto mb-8 border-4 border-brand-blue/50 overflow-hidden">
+            {/* Right Column with motion + shine effect */}
+            <div className="flex flex-col items-center text-center">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="w-48 h-48 rounded-full mx-auto mb-8 border-4 border-brand-blue/60 overflow-hidden relative shine-effect shadow-lg"
+              >
                 <img 
-                    src="public/photos/ffff.jpeg" // <-- This path is now updated
-                    alt="Photo of El Hanafi Abbaali"
-                    className="w-full h-full object-cover" 
+                  src="public/photos/ffff.jpeg"
+                  alt="Photo of El Hanafi Abbaali"
+                  className="w-full h-full object-cover"
                 />
-              </div>
+                {/* Optional: subtle shine overlay */}
+                <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shine"></div>
+              </motion.div>
+
               <h3 className="font-display text-xl mb-4">Help Accelerate Development</h3>
               <p className="text-text-secondary max-w-sm mb-8">
                 Your support can provide the essential tools needed to bring this vision to life faster.
@@ -46,9 +52,9 @@ export default function AboutMeSection() {
               >
                 Support the Vision
               </button>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-  );
+      </section>
+    );
 }
