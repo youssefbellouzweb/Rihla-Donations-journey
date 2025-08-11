@@ -1,9 +1,9 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  // This tells your website where to find all your files
+  // This line is the entire fix.
+  // It tells your website its address includes '/Rihla-Donations-journey/'.
   base: '/Rihla-Donations-journey/',
   
   plugins: [react()],
