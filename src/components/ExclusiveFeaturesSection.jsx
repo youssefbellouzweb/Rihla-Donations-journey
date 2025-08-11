@@ -1,69 +1,43 @@
-// src/components/ExclusiveFeaturesSection.jsx
 import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
+// --- STEP 1: Import all the images directly ---
+import rank1 from '../assets/photos/rank1.jpeg';
+import rank2 from '../assets/photos/rank2.jpeg';
+import rank3 from '../assets/photos/rank3.jpeg';
+import rank4 from '../assets/photos/rank4.jpeg';
+import rank5 from '../assets/photos/rank5.jpeg';
+import rank6 from '../assets/photos/rank6.jpeg';
+
+
+// --- STEP 2: Update the array to use the imported images ---
 const features = [
-  // Your features array remains the same...
-  {
-    rank: 6,
-    title: "Rihla Comfort+ Tier",
-    description: "An elite experience. Guarantee a top-rated “Pro” driver, a premium vehicle, and in-car amenities like chargers and water, all selectable in-app.",
-    imageUrl: "/photos/rank6.jpeg",
-  },
-  {
-    rank: 5,
-    title: "Rihla for Her",
-    description: "Female passengers can request a ride exclusively from a female driver, ensuring comfort and security.",
-    imageUrl: "/photos/rank5.jpeg",
-  },
-  { rank: 4, title: 'The "Triple-Check" Shield', description: "Every driver is vetted with ID verification, criminal record checks, and annual vehicle inspections.", imageUrl: "/photos/rank4.jpeg" },
-  { rank: 3, title: "Rihla Guardian™ with Sentry", description: "Family or friends can monitor your trip live, with in-car audio/video recording for full accountability.", imageUrl: "/photos/rank3.jpeg" },
-  { rank: 2, title: "Integrated Language Translation", description: "Our in-app chat auto-translates messages so drivers and passengers can connect without barriers.", imageUrl: "/photos/rank2.jpeg" },
-  { rank: 1, title: "The Digital Handshake™", description: "Scan the license plate before boarding to confirm the correct ride with complete certainty.", imageUrl: "/photos/rank1.jpeg" },
+  { rank: 6, title: "Rihla Comfort+ Tier", description: "An elite experience...", imageUrl: rank6 },
+  { rank: 5, title: "Rihla for Her", description: "Female passengers can request a ride...", imageUrl: rank5 },
+  { rank: 4, title: 'The "Triple-Check" Shield', description: "Every driver is vetted with ID verification...", imageUrl: rank4 },
+  { rank: 3, title: "Rihla Guardian™ with Sentry", description: "Family or friends can monitor your trip live...", imageUrl: rank3 },
+  { rank: 2, title: "Integrated Language Translation", description: "Our in-app chat auto-translates messages...", imageUrl: rank2 },
+  { rank: 1, title: "The Digital Handshake™", description: "Scan the license plate before boarding...", imageUrl: rank1 },
 ];
 
-
-// --- REVISED DESKTOP CARD ---
-// It no longer has its own scroll tracking. It receives progress from the parent.
 const FeatureCard = ({ feature, index, total, scrollYProgress }) => {
-  // Calculate the start and end point for this card's animation
-  // based on its index in the list.
   const start = index / total;
   const end = start + 1 / total;
-
-  // Create motion values that react to the PARENT's scroll progress
   const opacity = useTransform(scrollYProgress, [start, start + 0.1, end - 0.1, end], [0, 1, 1, 0]);
   const scale = useTransform(scrollYProgress, [start, start + 0.1], [0.9, 1]);
   const y = useTransform(scrollYProgress, [start, end], ["100px", "-100px"]);
-
-  // Determine the order for alternating layout
   const isEven = index % 2 === 0;
 
   return (
-    <motion.div
-      style={{ opacity, scale }}
-      className="min-h-screen flex items-center justify-center sticky top-0"
-    >
+    <motion.div style={{ opacity, scale }} className="min-h-screen flex items-center justify-center sticky top-0">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-20 items-center w-full max-w-6xl px-6">
-        
-        {/* Image - order alternates based on index */}
         <div className={`w-full h-96 rounded-2xl overflow-hidden border border-white/10 shadow-2xl ${isEven ? 'md:order-2' : 'md:order-1'}`}>
-          <img
-            src={feature.imageUrl}
-            alt={feature.title}
-            className="w-full h-full object-cover"
-          />
+          <img src={feature.imageUrl} alt={feature.title} className="w-full h-full object-cover"/>
         </div>
-
-        {/* Text content - order alternates based on index */}
         <motion.div style={{ y }} className={`${isEven ? 'md:order-1' : 'md:order-2'}`}>
-          <p className="text-8xl md:text-9xl font-bold text-white/10 mb-4">
-            #{feature.rank}
-          </p>
-          <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-            {feature.title}
-          </h3>
+          <p className="text-8xl md:text-9xl font-bold text-white/10 mb-4">#{feature.rank}</p>
+          <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">{feature.title}</h3>
           <p className="text-lg text-white/80 leading-relaxed">{feature.description}</p>
         </motion.div>
       </div>
@@ -71,61 +45,28 @@ const FeatureCard = ({ feature, index, total, scrollYProgress }) => {
   );
 };
 
-
 export default function ExclusiveFeaturesSection() {
-  // --- REVISED DESKTOP LOGIC ---
-  // 1. Create a single ref for the entire section
   const ref = useRef(null);
-  
-  // 2. Create a single scroll tracker for the section
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end end"], // Track from top to bottom of the section
-  });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
 
   return (
-    // 3. Attach the ref to the parent section
     <section ref={ref} className="bg-brand-dark relative">
-      {/* Header (unchanged) */}
       <div className="section-container text-center py-16 lg:py-24">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }} transition={{ duration: 0.6 }}
-          className="text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent"
-        >
+        <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
           Our Top 6 Features
         </motion.h2>
-        <motion.p
-          initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
-          viewport={{ once: true }} transition={{ delay: 0.3, duration: 0.6 }}
-          className="text-lg mt-4 max-w-3xl mx-auto text-white/80"
-        >
+        <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.3, duration: 0.6 }} className="text-lg mt-4 max-w-3xl mx-auto text-white/80">
           You won’t find these combined anywhere else. This is the Rihla difference.
         </motion.p>
       </div>
-
-      {/* --- REVISED DESKTOP CONTAINER --- */}
-      {/* This div's height determines the scroll duration. 6 features * 100vh = 600vh */}
       <div className="hidden md:block h-[600vh] relative">
         {features.map((feature, i) => (
-          // 4. Pass the centralized scroll progress down to each card
-          <FeatureCard
-            key={feature.rank}
-            feature={feature}
-            index={i}
-            total={features.length}
-            scrollYProgress={scrollYProgress}
-          />
+          <FeatureCard key={feature.rank} feature={feature} index={i} total={features.length} scrollYProgress={scrollYProgress}/>
         ))}
       </div>
-
-      {/* --- MOBILE CAROUSEL (Unchanged) --- */}
       <div className="flex md:hidden gap-4 overflow-x-auto snap-x snap-mandatory px-4 pb-10">
         {features.map((feature) => (
-          <motion.div
-            key={feature.rank} whileTap={{ scale: 0.97 }}
-            className="snap-center flex-shrink-0 w-80 bg-white/5 border border-white/10 rounded-2xl overflow-hidden"
-          >
+          <motion.div key={feature.rank} whileTap={{ scale: 0.97 }} className="snap-center flex-shrink-0 w-80 bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
             <img src={feature.imageUrl} alt={feature.title} className="w-full h-48 object-cover"/>
             <div className="p-4">
               <span className="block text-brand-primary font-bold text-lg mb-2">#{feature.rank}</span>
